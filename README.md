@@ -3,11 +3,13 @@
 A **React Native** mobile application that fetches and displays a list of hotels with details, sorting, and filtering options.
 
 ## 📌 Features
-- Fetches hotel data from an API
-- Displays a list of hotels with images, ratings, and pricing
-- Detailed hotel view with gallery and contact info
-- Sorting and filtering functionality
-- Smooth and user-friendly UI/UX
+-  Fetches hotel data from an API using Redux Toolkit  
+-  Displays a list of hotels with images, ratings, and pricing  
+-  Detailed hotel view with a gallery, contact info, and check-in/out times  
+-  Sorting functionality (Price, Stars, User Rating)  
+-  Optimized state management with Redux Toolkit for better performance  
+-  Smooth and user-friendly UI/UX  
+
 
 ## 🏗 Project Structure
 ```
