@@ -44,4 +44,13 @@ export const styles = StyleSheet.create({
     color: colors.text,
     marginBottom: 4,
   },
+  detail: {
+    fontSize: 16,
+    marginBottom: 4,
+    color: "#333",
+  },
+  label: {
+    fontWeight: "bold",
+    color: "#000",
+  },
 });
