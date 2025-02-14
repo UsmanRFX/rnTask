@@ -68,12 +68,17 @@ The base URL for API requests is stored in the `.env` file and accessed via `rea
 Navigation is handled using `@react-navigation/native` with a stack navigator.
 
 ## 📂 Key Files
-- `src/api/client.ts` – Axios instance setup
-- `src/api/hotels.ts` – Fetching hotel data
-- `src/components/HotelCard.tsx` – Reusable hotel card component
-- `src/navigation/AppNavigator.tsx` – Stack navigator setup
-- `src/screens/HomeScreen.tsx` – Displays hotel list
-- `src/screens/HotelDetails.tsx` – Shows hotel details
+- `src/api/client.ts` – Axios instance setup  
+- `src/api/hotelApi.ts` – Fetching hotel data  
+- `src/components/HotelCard.tsx` – Reusable hotel card component  
+- `src/components/CustomPicker.tsx` – Custom picker for sorting  
+- `src/navigation/AppNavigator.tsx` – Stack navigator setup  
+- `src/screens/HomeScreen.tsx` – Displays hotel list with sorting  
+- `src/screens/HotelDetails.tsx` – Shows hotel details  
+- `src/store/hotelSlice.ts` – Redux state management for hotels  
+- `src/constants/navigation.ts` – Centralized navigation constants  
+- `src/constants/sortOptions.ts` – Predefined sorting options  
+
 
 ## ✅ Commit Guidelines
 This project follows **Conventional Commits**:
