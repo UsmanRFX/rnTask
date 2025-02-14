@@ -16,6 +16,8 @@ export const HomeScreen = () => {
   const [error, setError] = useState<string | null>(null);
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const goto = (item: Hotel) =>
+    navigation.navigate("HotelDetails", { hotel: item });
   useEffect(() => {
     const loadHotels = async () => {
       try {
@@ -41,8 +43,7 @@ export const HomeScreen = () => {
 
   if (loading) return <ActivityIndicator size="large" color={colors.primary} />;
   if (error) return <Text style={styles.errorText}>{error}</Text>;
-  const goto = (item: Hotel) =>
-    navigation.navigate("HotelDetails", { hotel: item });
+
   return (
     <View style={styles.container}>
       <FlatList
