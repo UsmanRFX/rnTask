@@ -1,0 +1,17 @@
+{
+  "extends": "@react-native/typescript-config/tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "strict": true,  // Enable strict type checking
+    "noImplicitAny": true,  // Prevent implicit 'any' types
+    "strictNullChecks": true,  // Avoid issues with null/undefined
+    "strictFunctionTypes": true,  // Improve function parameter checks
+    "noImplicitReturns": true,  // Ensure all functions return a value
+    "noFallthroughCasesInSwitch": true,  // Prevent switch case fallthrough errors
+    "resolveJsonModule": true,  // Allow importing JSON files
+    "skipLibCheck": true,  // Avoid checking type definitions in node_modules
+    "esModuleInterop": true,  // Improve compatibility with ES modules
+    "forceConsistentCasingInFileNames": true  // Prevent case-sensitive import issues
+  }
+}
+
