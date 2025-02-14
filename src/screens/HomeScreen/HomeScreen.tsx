@@ -20,7 +20,7 @@ import { colors } from "../../theme/colors";
 export const HomeScreen = () => {
   const [hotels, setHotels] = useState<Hotel[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const goto = (item: Hotel) =>
@@ -28,7 +28,6 @@ export const HomeScreen = () => {
   useEffect(() => {
     const loadHotels = async () => {
       try {
-        setLoading(true);
         const data = await fetchHotels();
         setHotels(data);
       } catch (err) {
@@ -38,7 +37,6 @@ export const HomeScreen = () => {
           errorMessage = err.message;
         }
 
-        setError(errorMessage);
         Alert.alert("Error", errorMessage, [{ text: "OK" }]);
       } finally {
         setLoading(false);
@@ -49,7 +47,6 @@ export const HomeScreen = () => {
   }, []);
 
   if (loading) return <ActivityIndicator size="large" color={colors.primary} />;
-  if (error) return <Text style={styles.errorText}>{error}</Text>;
 
   return (
     <SafeAreaView style={styles.container}>

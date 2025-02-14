@@ -1,6 +1,6 @@
-import { handleApiError } from '../utils/errorHandler';
-import apiClient from './client';
-import { API_ENDPOINTS } from './config';
+import { handleApiError } from "../utils/errorHandler";
+import apiClient from "./client";
+import { API_ENDPOINTS } from "./config";
 
 export interface Location {
   address: string;
@@ -33,7 +33,6 @@ export interface Hotel {
   currency: string;
 }
 
-
 export const fetchHotels = async (): Promise<Hotel[]> => {
   try {
     const response = await apiClient.get<Hotel[]>(API_ENDPOINTS.HOTELS);
@@ -42,4 +41,3 @@ export const fetchHotels = async (): Promise<Hotel[]> => {
     throw handleApiError(error);
   }
 };
-
