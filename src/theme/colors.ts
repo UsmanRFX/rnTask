@@ -11,5 +11,8 @@ export const colors = {
     success: "#28a745",
     warning: "#ffc107",
     accent: "#ff5722",
+    starFilled: "#FFD700", 
+    starEmpty: "#CCCCCC", 
+  
   };
   

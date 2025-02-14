@@ -4,8 +4,6 @@ import { styles } from "./styles";
 import { ImageCarousel, Rating } from "../../components";
 import { RootStackParamList } from "../../types/navigation";
 
-
-
 export const HotelDetailsScreen = () => {
   const route = useRoute<RouteProp<RootStackParamList, "HotelDetails">>();
   const { hotel } = route.params;

@@ -13,4 +13,10 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  errorText: {
+    color: "red",
+    fontSize: 16,
+    textAlign: "center",
+    marginTop: 20,
+  },
 });
