@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { View, FlatList, ActivityIndicator } from "react-native";
+import { View, FlatList, ActivityIndicator, Text } from "react-native";
 import { fetchHotels } from "../../api/hotelApi";
 import { Hotel } from "../../types";
-import { HotelCard } from "../../components/HotelCard/HotelCard";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { styles } from "./styles";
+import { HotelCard } from "../../components";
+
+
 
 type RootStackParamList = {
   Home: undefined;
@@ -42,6 +44,8 @@ export const HomeScreen = () => {
 
   return (
     <View style={styles.container}>
+
+
       <FlatList
         data={hotels}
         keyExtractor={(item) => item.id.toString()}

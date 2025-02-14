@@ -10,6 +10,6 @@ export const styles = StyleSheet.create({
     marginLeft: 5,
     fontSize: 14,
     fontWeight: "bold",
-    color: colors.textPrimary,
+    color: colors.text,
   },
 });
