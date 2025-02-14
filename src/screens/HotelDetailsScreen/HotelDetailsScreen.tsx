@@ -15,7 +15,7 @@ export const HotelDetailsScreen = () => {
       <ImageCarousel images={hotel.gallery} />
       <View style={styles.content}>
         <Text style={styles.name}>{hotel.name}</Text>
-        <Rating stars={hotel.stars} />
+        <Rating value={hotel.stars} />
         <Text style={styles.address}>
           {hotel.location.address}, {hotel.location.city}
         </Text>
