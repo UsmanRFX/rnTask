@@ -67,3 +67,6 @@ yarn-error.log
 
 # Environment Variables
 .env
+
+#sample
+sample.tsx
