@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, fetchHotels, HotelState, RootState, setSortBy } from "../../store";
 import { NAVIGATION } from "../../constants/navigation";
 import { colors } from "../../theme/colors";
+import { SORT_OPTIONS } from "../../constants";
 
 export const HomeScreen = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -37,13 +38,7 @@ export const HomeScreen = () => {
       <CustomPicker
         selectedValue={sortBy || ""}
         onValueChange={(value) => dispatch(setSortBy(value as HotelState["sortBy"]))}
-
-        options={[
-          { label: "Sort by", value: "" },
-          { label: "Price (Low to High)", value: "price" },
-          { label: "Stars (High to Low)", value: "stars" },
-          { label: "User Rating (High to Low)", value: "rating" },
-        ]}
+        options={SORT_OPTIONS}
       />
       <FlatList
         data={filteredHotels}
