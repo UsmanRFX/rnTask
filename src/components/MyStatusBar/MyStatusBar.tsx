@@ -6,8 +6,9 @@ import {
     StatusBarProps,
   } from "react-native";
   import React from "react";
-import { APPBAR_HEIGHT, STATUSBAR_HEIGHT } from "../../constants/dimensions";
+
 import { colors } from "../../theme/colors";
+import { APPBAR_HEIGHT, STATUSBAR_HEIGHT } from "../../constants";
   
   interface MyStatusBarProps extends StatusBarProps {
     backgroundColor?: string;
