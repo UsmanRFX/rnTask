@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
-  Text,
   ActivityIndicator,
   FlatList,
   Alert,
@@ -10,37 +9,36 @@ import {
 import { styles } from "./styles";
 import { fetchHotels } from "../../api/hotelApi";
 import { AppError } from "../../utils/errorHandler";
-import { HotelCard } from "../../components";
+import { HotelCard, CustomPicker } from "../../components";
 import { useNavigation } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types/navigation";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Hotel } from "../../types";
 import { colors } from "../../theme/colors";
-import { NAVIGATION, STRINGS } from "../../constants";
-
+import { NAVIGATION } from "../../constants/navigation";
 
 export const HomeScreen = () => {
-  const [hotels, setHotels] = useState([] as Hotel[]);
+  const [hotels, setHotels] = useState<Hotel[]>([]);
+  const [filteredHotels, setFilteredHotels] = useState<Hotel[]>([]);
   const [loading, setLoading] = useState(true);
+  const [sortBy, setSortBy] = useState<string>("");
 
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
-  const goto = useCallback(
-    (hotel: Hotel) => navigation.navigate(NAVIGATION.DETAILS, { hotel }),
-    [navigation]
-  );
+  const goto = (item: Hotel) =>
+    navigation.navigate(NAVIGATION.DETAILS, { hotel: item });
 
   useEffect(() => {
     const loadHotels = async () => {
       try {
-        setLoading(true);
         const data = await fetchHotels();
         setHotels(data);
+        setFilteredHotels(data);
       } catch (err) {
-        const errorMessage =
-          err instanceof AppError ? err.message : STRINGS.ERROR_UNKNOWN;
-        Alert.alert(STRINGS.ERROR_TITLE, errorMessage, [{ text: STRINGS.OK }]);
+        let errorMessage = "An unexpected error occurred.";
+        if (err instanceof AppError) errorMessage = err.message;
+        Alert.alert("Error", errorMessage, [{ text: "OK" }]);
       } finally {
         setLoading(false);
       }
@@ -49,21 +47,42 @@ export const HomeScreen = () => {
     loadHotels();
   }, []);
 
-  if (loading) {
-    return (
-      <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color={colors.primary} />
-      </View>
-    );
-  }
+  // Sort hotels when sortBy changes
+  useEffect(() => {
+    let sortedHotels = [...filteredHotels];
+
+    if (sortBy === "price") {
+      sortedHotels.sort((a, b) => a.price - b.price);
+    } else if (sortBy === "stars") {
+      sortedHotels.sort((a, b) => b.stars - a.stars);
+    } else if (sortBy === "rating") {
+      sortedHotels.sort((a, b) => b.userRating - a.userRating);
+    }
+
+    setFilteredHotels(sortedHotels);
+  }, [sortBy]);
+
+  if (loading) return <ActivityIndicator size="large" color={colors.primary} />;
 
   return (
     <SafeAreaView style={styles.container}>
+      <CustomPicker
+        selectedValue={sortBy}
+        onValueChange={setSortBy}
+        options={[
+          { label: "Sort by", value: "" },
+          { label: "Price (Low to High)", value: "price" },
+          { label: "Stars (High to Low)", value: "stars" },
+          { label: "User Rating (High to Low)", value: "rating" },
+        ]}
+      />
+
       <FlatList
-        data={hotels}
+        data={filteredHotels}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => <HotelCard hotel={item} onPress={() => goto(item)} />}
-        ListEmptyComponent={<Text style={styles.emptyText}>{STRINGS.NO_HOTELS_AVAILABLE}</Text>}
+        renderItem={({ item }) => (
+          <HotelCard hotel={item} onPress={() => goto(item)} />
+        )}
       />
     </SafeAreaView>
   );

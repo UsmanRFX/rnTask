@@ -35,12 +35,9 @@ export const ImageCarousel = ({ images }: ImageCarouselProps) => {
         onScroll={handleScroll}
         scrollEventThrottle={16}
       >
-        {images.map((image, index) => {
-          console.log(image);
-          return (
-            <Image key={index} source={{ uri: image }} style={styles.image} />
-          );
-        })}
+        {images.map((image, index) => (
+          <Image key={index} source={{ uri: image }} style={styles.image} />
+        ))}
       </ScrollView>
       <View style={styles.pagination}>
         {images.map((_, index) => (
