@@ -1,4 +1,7 @@
 import { StyleSheet } from "react-native";
+import { screenWidth } from "../../constants/dimensions";
+import { HPX } from "../../utils/responsiveness";
+import { colors } from "../../theme/colors";
 
 export const styles = StyleSheet.create({
   container: {
@@ -6,9 +9,9 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
   },
   image: {
-    width: "100%",
-    height: 200,
-    borderRadius: 10,
+    width: screenWidth,
+    height: HPX(250),
+    resizeMode: "cover",
   },
   pagination: {
     flexDirection: "row",
@@ -25,5 +28,14 @@ export const styles = StyleSheet.create({
   },
   activeDot: {
     backgroundColor: "white",
+  },
+  backButton: {
+    position: "absolute",
+    top: 40,
+    left: 16,
+    backgroundColor: colors.black + "80",
+    borderRadius: 20,
+    padding: 8,
+    zIndex: 10,
   },
 });

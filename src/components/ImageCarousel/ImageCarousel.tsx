@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { View, Image, ScrollView, TouchableOpacity } from "react-native";
+import Icon from "react-native-vector-icons/MaterialIcons";
 import { styles } from "./styles";
+import { colors } from "../../theme/colors";
+import { useNavigation } from "@react-navigation/native";
 
 interface ImageCarouselProps {
   images: string[];
@@ -8,7 +11,7 @@ interface ImageCarouselProps {
 
 export const ImageCarousel = ({ images }: ImageCarouselProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
-
+  const navigation = useNavigation();
   const handleScroll = (event: any) => {
     const index = Math.round(
       event.nativeEvent.contentOffset.x /
@@ -19,6 +22,12 @@ export const ImageCarousel = ({ images }: ImageCarouselProps) => {
 
   return (
     <View style={styles.container}>
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => navigation.goBack()}
+      >
+        <Icon name="arrow-back" size={24} color={colors.white} />
+      </TouchableOpacity>
       <ScrollView
         horizontal
         pagingEnabled

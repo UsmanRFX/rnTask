@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, ActivityIndicator, FlatList, Alert } from "react-native";
+import {
+  View,
+  Text,
+  ActivityIndicator,
+  FlatList,
+  Alert,
+  SafeAreaView,
+} from "react-native";
 import { styles } from "./styles";
 import { fetchHotels } from "../../api/hotelApi";
 import { AppError } from "../../utils/errorHandler";
@@ -45,7 +52,7 @@ export const HomeScreen = () => {
   if (error) return <Text style={styles.errorText}>{error}</Text>;
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <FlatList
         data={hotels}
         keyExtractor={(item) => item.id.toString()}
@@ -53,6 +60,6 @@ export const HomeScreen = () => {
           <HotelCard hotel={item} onPress={() => goto(item)} />
         )}
       />
-    </View>
+    </SafeAreaView>
   );
 };
